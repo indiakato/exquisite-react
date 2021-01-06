@@ -4,32 +4,19 @@ import PropTypes from 'prop-types';
 import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = (props) => {
-  const [formFields, setFormFields] = useState({
-    adj1: '', 
-    noun1: '', 
-    adv: '', 
-    verb1: '', 
-    adj2: '', 
-    noun2: ''
-  });
-
-  const onInputChange = (event) => {
-    const newFormFields = {...formFields};
-    newFormFields[event.target.name] = event.target.value;
-    setFormFields(newFormFields)
+  const setDefault = () => {
+    let defaultFields = {}
+    props.fields.forEach((field) => {
+      if (field.key) {
+        defaultFields[field.key] = '';
+      }
+    })
+    return defaultFields
   }
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    props.onSubmitCallback(formFields);
-    setFormFields({
-      adj1: '', 
-      noun1: '', 
-      adv: '', 
-      verb1: '', 
-      adj2: '', 
-      noun2: ''
-    })
+  const [formFields, setFormFields] = useState(setDefault());
+
+  
   }
 
 
@@ -41,24 +28,24 @@ const PlayerSubmissionForm = (props) => {
 
         <div className="PlayerSubmissionForm__poem-inputs">
           <div>
-            <input placeholder="1st Adjective" type="text" onChange={onInputChange} value={formFields.adj1} />
+            <input placeholder="adjective1" type="text" onChange={onInputChange} value={formFields.adj1} />
           </div>
           <div>
-            <input placeholder="1st Noun" type="text" onChange={onInputChange} value={formFields.noun1} />
+            <input placeholder="noun1" type="text" onChange={onInputChange} value={formFields.noun1} />
           </div>
           <div>
-            <input placeholder="Adverb" type="text" onChange={onInputChange} value={formFields.adv} />
+            <input placeholder="adverb" type="text" onChange={onInputChange} value={formFields.adv} />
           </div>
           <div>
-            <input placeholder="2nd Adjective" type="text" onChange={onInputChange} value={formFields.adj2} />
+            <input placeholder="adjective2" type="text" onChange={onInputChange} value={formFields.adj2} />
           </div>
           <div>
-            <input placeholder="2nd Noun" type="text" onChange={onInputChange} value={formFields.noun2} />
+            <input placeholder="noun2" type="text" onChange={onInputChange} value={formFields.noun2} />
           </div>
         </div>
 
         <div className="PlayerSubmissionForm__submit">
-          <input type="submit" value="Submit Line" onSubmit={onSubmit} className="PlayerSubmissionForm__submit-btn" />
+          <input type="submit" value="Submit Line" onSubmit={sendSubmission} className="PlayerSubmissionForm__submit-btn" />
         </div>
       </form>
     </div>
