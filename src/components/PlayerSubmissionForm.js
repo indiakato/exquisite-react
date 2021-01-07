@@ -5,47 +5,62 @@ import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = (props) => {
   const setDefault = () => {
-    let defaultFields = {}
+    let defaultFields = {};
     props.fields.forEach((field) => {
       if (field.key) {
         defaultFields[field.key] = '';
       }
-    })
-    return defaultFields
+    });
+    return defaultFields;
   }
 
   const [formFields, setFormFields] = useState(setDefault());
 
-  
+  const onInputChange = (event) => {
+    const newFormFields = {...formFields};
+    newFormFields[event.target.name] = event.target.value
+    setFormFields(newFormFields)
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    props.sendSubmission(formFields);
+    setFormFields(setDefault());
   }
 
 
   return (
     <div className="PlayerSubmissionForm">
-      <h3>Player Submission Form for Player #{  }</h3>
+      <h3>Player Submission Form for Player #{ props.index }</h3>
 
-      <form className="PlayerSubmissionForm__form" >
+      <form className="PlayerSubmissionForm__form" onSubmit={onSubmit}>
 
         <div className="PlayerSubmissionForm__poem-inputs">
-          <div>
-            <input placeholder="adjective1" type="text" onChange={onInputChange} value={formFields.adj1} />
-          </div>
-          <div>
-            <input placeholder="noun1" type="text" onChange={onInputChange} value={formFields.noun1} />
-          </div>
-          <div>
-            <input placeholder="adverb" type="text" onChange={onInputChange} value={formFields.adv} />
-          </div>
-          <div>
-            <input placeholder="adjective2" type="text" onChange={onInputChange} value={formFields.adj2} />
-          </div>
-          <div>
-            <input placeholder="noun2" type="text" onChange={onInputChange} value={formFields.noun2} />
-          </div>
+          {
+            props.fields.map((field, index) => {
+              if (typeof field === 'object') {
+                return (
+                  <input
+                    key={index}
+                    value={formFields[field.key]}
+                    name={field.key}
+                    placeholder={field.placeholder}
+                    onChange={onInputChange}
+                  />
+                )
+              } else {
+                return (
+                  <div key={index}>
+                    {field}
+                  </div>
+                )
+              }
+            })
+          }
         </div>
 
         <div className="PlayerSubmissionForm__submit">
-          <input type="submit" value="Submit Line" onSubmit={sendSubmission} className="PlayerSubmissionForm__submit-btn" />
+          <input type="submit" value="Submit Line" className="PlayerSubmissionForm__submit-btn" />
         </div>
       </form>
     </div>
