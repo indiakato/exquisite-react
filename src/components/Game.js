@@ -41,6 +41,8 @@ const Game = () => {
     setSubmissionStatus(true);
   }
 
+  const mostRecentSubmission = poemLines[poemLines.length - 1]
+
   return (
     <div className="Game">
       <h2>Game</h2>
@@ -53,7 +55,7 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission />
+      <RecentSubmission submission={mostRecentSubmission}/>
 
       <PlayerSubmissionForm fields={FIELDS} sendSubmission={sendSubmission} index={currentPlayer}/>
 
