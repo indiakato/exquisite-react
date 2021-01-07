@@ -9,6 +9,7 @@ const Game = () => {
 
   const [poemLines, setPoemLines] = useState([])
   const [currentPlayer, setCurrentPlayer] = useState(playerNum)
+  const [isSubmitted, setSubmissionStatus] = useState(false)
 
   const setPlayer = (updatedPlayer) => {
     updatedPlayer = updatedPlayer += 1
@@ -35,6 +36,10 @@ const Game = () => {
       return field;
     }
   }).join(' ');
+
+  const revealPoem = () => {
+    setSubmissionStatus(true);
+  }
 
   return (
     <div className="Game">
