@@ -41,7 +41,25 @@ const Game = () => {
     setSubmissionStatus(true);
   }
 
-  const mostRecentSubmission = poemLines[poemLines.length - 1]
+  const hideForm = () => {
+    if (isSubmitted) {
+      return <p></p>;
+    } else {
+      return <PlayerSubmissionForm fields={FIELDS} sendSubmission={sendSubmission} index={currentPlayer} />
+    }
+  }
+
+  const hideMostRecent = () => {
+    if (poemLines.length === 0) {
+      return <p></p>
+    } else {
+      return <RecentSubmission submission={mostRecentSubmission}/>
+    }
+  }
+
+  const mostRecentSubmission = () => {
+    return poemLines[poemLines.length - 1]
+  }
 
   return (
     <div className="Game">
@@ -56,9 +74,9 @@ const Game = () => {
       </p>
 
       <RecentSubmission submission={mostRecentSubmission}/>
-
-      <PlayerSubmissionForm fields={FIELDS} sendSubmission={sendSubmission} index={currentPlayer}/>
-
+      
+      <PlayerSubmissionForm fields={FIELDS} sendSubmission={sendSubmission} index={currentPlayer} />
+      
       <FinalPoem isSubmitted={isSubmitted} submissions={poemLines} revealPoem={revealPoem}/>
 
     </div>

@@ -4,7 +4,6 @@ import './RecentSubmission.css';
 
 const RecentSubmission = (props) => {
 
-
   return (
     <div className="RecentSubmission">
       <h3>The Most Recent Submission</h3>

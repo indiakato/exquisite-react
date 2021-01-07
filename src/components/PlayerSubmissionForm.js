@@ -28,6 +28,10 @@ const PlayerSubmissionForm = (props) => {
     setFormFields(setDefault());
   }
 
+  const showForm = () => {
+    
+  }
+
 
   return (
     <div className="PlayerSubmissionForm">
