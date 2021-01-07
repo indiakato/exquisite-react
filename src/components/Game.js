@@ -57,7 +57,7 @@ const Game = () => {
 
       <PlayerSubmissionForm fields={FIELDS} sendSubmission={sendSubmission} index={currentPlayer}/>
 
-      <FinalPoem />
+      <FinalPoem isSubmitted={isSubmitted} submissions={poemLines} revealPoem={revealPoem}/>
 
     </div>
   );
