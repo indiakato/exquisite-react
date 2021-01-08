@@ -13,7 +13,7 @@ const FinalPoem = (props) => {
                 <p key={index}>
                   {submission}
                 </p>
-              )
+              );
             })
           }
         </div>

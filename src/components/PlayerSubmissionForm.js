@@ -18,8 +18,8 @@ const PlayerSubmissionForm = (props) => {
 
   const onInputChange = (event) => {
     const newFormFields = {...formFields};
-    newFormFields[event.target.name] = event.target.value
-    setFormFields(newFormFields)
+    newFormFields[event.target.name] = event.target.value;
+    setFormFields(newFormFields);
   }
 
   const onSubmit = (event) => {

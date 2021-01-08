@@ -12,9 +12,9 @@ const Game = () => {
   const [isSubmitted, setSubmissionStatus] = useState(false)
 
   const setPlayer = (updatedPlayer) => {
-    updatedPlayer = updatedPlayer += 1
-    setCurrentPlayer(updatedPlayer)
-  }
+    updatedPlayer = updatedPlayer += 1;
+    setCurrentPlayer(updatedPlayer);
+  };
 
   const sendSubmission = (newPoemLine) => {
     const formatLine = FIELDS.map((field) => {
@@ -23,10 +23,10 @@ const Game = () => {
       } else {
         return field;
       }
-    }).join(' ')
+    }).join(' ');
 
-    setPoemLines([...poemLines, formatLine])
-    setCurrentPlayer(setPlayer)
+    setPoemLines([...poemLines, formatLine]);
+    setCurrentPlayer(setPlayer);
   };
 
   const exampleFormat = FIELDS.map((field) => {
@@ -39,7 +39,7 @@ const Game = () => {
 
   const revealPoem = () => {
     setSubmissionStatus(true);
-  }
+  };
 
   return (
     <div className="Game">
